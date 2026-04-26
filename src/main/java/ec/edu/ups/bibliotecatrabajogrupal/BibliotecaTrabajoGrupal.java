@@ -209,7 +209,7 @@ public class BibliotecaTrabajoGrupal {
             opcion = lector.nextByte();
             lector.nextLine();
         }
-        System.out.println("Fin del proceso");
+        System.out.println("Fin del procedimiento");
         lector.close();
     }
 }
