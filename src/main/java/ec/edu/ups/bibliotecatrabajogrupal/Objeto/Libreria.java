@@ -7,6 +7,10 @@ public class Libreria {
     public Libreria() {
         
     }
+    
+    public Libreria(boolean estado){
+        this.estado=estado;
+    }
 
     public Libreria(Libro nuevoLibro, Autor autorLibro) {
         this.nuevoLibro = nuevoLibro;
