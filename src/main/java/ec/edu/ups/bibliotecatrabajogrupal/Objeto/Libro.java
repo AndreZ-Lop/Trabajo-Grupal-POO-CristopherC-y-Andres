@@ -34,7 +34,7 @@ public class Libro {
         this.autorLibro = autorLibro;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -75,28 +75,4 @@ public class Libro {
         }
     }
      
-    public String prestamoLibro(Usuario solicitante,Libro libroSolicitado){
-         if(solicitante.getEstadoMembresia() && libroSolicitado.estado){
-             solicitante.setEstadoMembresia(false);
-             libroSolicitado.setEstado(false);
-             return "El préstamo se realizó con éxito a: " + solicitante.getDatosUsuario().getNombre();
-         }else if(!solicitante.getEstadoMembresia()){
-             return "Error: El usuario ya tiene un libro en su poder.";
-         }else{
-             return "Error: El libro solicitado no está disponible actualmente.";
-         }
-    }
-    
-    public String devolucionLibro(Usuario solicitante,Libro libroSolicitado){
-         if(!solicitante.getEstadoMembresia() && !libroSolicitado.estado){
-             solicitante.setEstadoMembresia(true);
-             libroSolicitado.setEstado(true);
-             return "La devolucion se realizó con éxito el usuario: " + solicitante.getDatosUsuario().getNombre() + " NO DEBE TIENE DEUDAS";
-         }else if(solicitante.getEstadoMembresia()){
-             return "Error: El usuario no debe devolver ningun libro.";
-         }else{
-             return "Error: El libro solicitado no debe ser devuelto por el usuario." + solicitante.getDatosUsuario().getNombre();
-         }
-    }
-       
 }

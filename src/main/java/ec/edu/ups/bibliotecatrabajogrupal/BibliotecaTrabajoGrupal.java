@@ -8,6 +8,7 @@ import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Usuario;
 import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Libro;
 import ec.edu.ups.bibliotecatrabajogrupal.Objeto.DatoLibro;
 import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Persona;
+import ec.edu.ups.bibliotecatrabajogrupal.Objeto.SistemaPrestamo;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +19,7 @@ public class BibliotecaTrabajoGrupal {
         
         ArrayList<Usuario> listaUsuarios = new ArrayList();
         ArrayList<Libro> listaLibros = new ArrayList();
+        ArrayList<SistemaPrestamo> listaPrestamos = new ArrayList();
         
         System.out.println("--- MENU ---");
         System.out.println("1 - Registrar Usuario");
@@ -162,7 +164,26 @@ public class BibliotecaTrabajoGrupal {
                             String libroSolicitado = lector.nextLine();
                             for(Libro buscarLibro: listaLibros){
                                 if(libroSolicitado.equals(buscarLibro.getNuevoLibro().getTitulo())){
-                                    System.out.println(buscarLibro.prestamoLibro(solicitante, buscarLibro));
+                                    SistemaPrestamo prestamo = new SistemaPrestamo();
+                                    System.out.println(prestamo.prestamoLibro(solicitante, buscarLibro));
+                                    Date obtenerFechaActual = new Date();
+                                    int dia = obtenerFechaActual.getDay();
+                                    int mes = obtenerFechaActual.getMonth();
+                                    int anio =obtenerFechaActual.getYear();
+                                    
+                                    Date inicioPrestamo = new Date();
+                                    inicioPrestamo = new Date (anio - 1900,mes-1,dia);
+                                    prestamo.setInicioPrestamo(inicioPrestamo);
+                                    
+                                    Date finPrestamo = new Date();
+                                    finPrestamo = new Date(anio - 1900, mes - 1, dia + 7);
+                                    prestamo.setFinPrestamo(finPrestamo);
+                                    
+                                    prestamo.setLibroPrestado(buscarLibro);
+                                    prestamo.setUsuarioPrestado(solicitante);
+                                    
+                                    listaPrestamos.add(prestamo);
+                                    
                                     buscarExistencia = true;
                                     break;
                                 }
@@ -197,7 +218,15 @@ public class BibliotecaTrabajoGrupal {
                             String libroSolicitado = lector.nextLine();
                             for(Libro buscarLibro: listaLibros){
                                 if(libroSolicitado.equals(buscarLibro.getNuevoLibro().getTitulo())){
-                                    System.out.println(buscarLibro.devolucionLibro(solicitante, buscarLibro));
+                                    SistemaPrestamo devolucion = new SistemaPrestamo();
+                                    System.out.println(devolucion.devolucionLibro(solicitante, buscarLibro));
+                                    for (int i = 0;i<listaPrestamos.size();i++){
+                                        SistemaPrestamo prestamoActual = listaPrestamos.get(i);
+                                        if(prestamoActual.getLibroPrestado().getNuevoLibro().equals(buscarLibro.getNuevoLibro())){
+                                            listaPrestamos.remove(i);
+                                            break;
+                                        }
+                                    }
                                     buscarExistencia = true;
                                     break;
                                 }
