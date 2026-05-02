@@ -3,20 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ec.edu.ups.bibliotecatrabajogrupal.Objeto;
+import java.util.Date;
 public class Persona {
     private String nombre;
     private String cedula;
-    private int edad;
+    private Date fechaNac;
     private String apellido;
     
     public Persona(){
         
     }
     
-    public Persona(String nombre, String cedula, int edad, String apellido){
+    public Persona(String nombre, String cedula, Date fechaNac, String apellido){
         this.nombre = nombre;
         this.cedula = cedula;
-        this.edad = edad;
+        this.fechaNac = fechaNac;
         this.apellido = apellido;
     }
 
@@ -36,12 +37,12 @@ public class Persona {
         this.cedula = cedula;
     }
 
-    public int getEdad() {
-        return edad;
+    public Date getFechaNac() {
+        return fechaNac;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac= fechaNac;
     }
 
     public String getApellido() {
@@ -57,9 +58,16 @@ public class Persona {
         String resultado = "\n";
         resultado += "Nombre del usuario: " + nombre + "\n";
         resultado += "Cedula : " + cedula + "\n";
-        resultado += "Edad: " + edad;
+        resultado += "Edad: " + fechaNac;
         resultado += "Apellido: " + apellido;
         return resultado;
+    }
+    
+    public boolean esMayorDeEdad(Date fechaNac){
+        Date fechaActual = new Date();
+        int edad =fechaActual.getYear()- fechaNac.getYear();
+        boolean mayorDeEdad = edad>=18;
+        return mayorDeEdad;
     }
             
 }

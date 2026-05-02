@@ -4,15 +4,17 @@ public class Usuario {
     private String contrasenia;
     private boolean estadoMembresia;
     private Persona datosUsuario;
+    private boolean restriccionesUsuario;
 
     public Usuario(){
     }
 
-    public Usuario(String correo, String contrasenia, boolean estadoMembresia, Persona datosUsuario) {
+    public Usuario(String correo, String contrasenia, boolean estadoMembresia, Persona datosUsuario, boolean restriccionesUsuario) {
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.estadoMembresia = estadoMembresia;
         this.datosUsuario = datosUsuario;
+        this.restriccionesUsuario = restriccionesUsuario;
     }
 
     public String getCorreo() {
@@ -47,6 +49,14 @@ public class Usuario {
         this.datosUsuario = datosUsuario;
     }
     
+    public boolean getRestricionesUsuario(){
+        return restriccionesUsuario;
+    }
+    
+    public void setRestriccionesUsuario(boolean restriccionesUsuario){
+        this.restriccionesUsuario = restriccionesUsuario;
+    }
+    
     @Override
     public String toString(){
         String resultado = "";
@@ -60,4 +70,14 @@ public class Usuario {
         resultado += "Datos Usuario: " + datosUsuario;
         return resultado;
     } 
+    
+    public String restriccionesUsuario(boolean res,Usuario restriccionesUsuario){
+        if (!res){
+            restriccionesUsuario.setRestriccionesUsuario(true);
+            return "Su cuenta tendra restricciones por lo que no podra pedir algunos libros";
+        }else{
+            return "";
+        }
+    }
+        
 }
