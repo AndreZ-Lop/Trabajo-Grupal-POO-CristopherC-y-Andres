@@ -46,19 +46,19 @@ public class BibliotecaTrabajoGrupal {
                         Persona nuevosDatos = new Persona();
                         continuaRes = false;
                         System.out.println("Datos del Usuario");
-                        System.out.println("Ingrese su nombre");
+                        System.out.println("Ingrese su nombre: ");
                         String nombre = lector.next();
                         nuevosDatos.setNombre(nombre);
                         
-                        System.out.println("Ingrese su apellido");
+                        System.out.println("Ingrese su apellido: ");
                         String apellido = lector.next();
                         nuevosDatos.setApellido(apellido);
                 
-                        System.out.println("Ingrese su cedula");
+                        System.out.println("Ingrese su cedula: ");
                         String cedula = lector.next();
                         nuevosDatos.setCedula(cedula);
                       
-                        System.out.println("Ingrese su fecha de nacimiento");
+                        System.out.println("Ingrese su fecha de nacimiento (DD MM AAAA)");
                         int dia = lector.nextInt();
                         int mes = lector.nextInt();
                         int anio = lector.nextInt();
@@ -83,11 +83,11 @@ public class BibliotecaTrabajoGrupal {
                             nuevoUsuario.setDatosUsuario(nuevosDatos);
 
                             System.out.println("Creacion usuario");
-                            System.out.println("Ingrese su correo");
+                            System.out.println("Ingrese su correo: ");
                             String correo = lector.next();
                             nuevoUsuario.setCorreo(correo);
 
-                            System.out.println("Cree una contraseña");
+                            System.out.println("Cree una contrasenia: ");
                             String contrasenia = lector.next();
                             nuevoUsuario.setContrasenia(contrasenia);
 
@@ -106,26 +106,35 @@ public class BibliotecaTrabajoGrupal {
                         Autor nuevoAutor = new Autor();
                         System.out.println("--- Datos ---");
                         System.out.println("Ingreso de datos del autor");
-                        System.out.println("Nombre");
+                        System.out.println("Nombre: ");
                         String nombre = lector.next();
                         nuevoAutor.setNombre(nombre);
                         
-                        System.out.println("Apellido");
+                        System.out.println("Apellido: ");
                         String apellido = lector.next();
                         nuevoAutor.setApellido(apellido);
                         
-                        System.out.println("seudonimo del autor");
+                        System.out.println("seudonimo del autor: ");
                         String apodo = lector.next();
                         nuevoAutor.setSeudonimo(apodo);
                         
+                        System.out.println("Nacionalidad: ");
+                        String nacionalidad = lector.next();
+                        nuevoAutor.setNacionalidad(nacionalidad);
+                        
+                        System.out.println("Ingrese el genero: ");
+                        String genero = lector.next();
+                        nuevoAutor.setGeneroAutor(genero);
+                        
+                        
                         lector.nextLine();
                         
-                        System.out.println("Ingreso de datos del libro");
-                        System.out.println("Titulo del Libro");
+                        System.out.println("Ingreso de datos del libro: ");
+                        System.out.println("Titulo del Libro: ");
                         String titulo = lector.nextLine();
                         nuevoLibro.setTitulo(titulo);
                         
-                        System.out.println("Id del libro");
+                        System.out.println("Id del libro: ");
                         int id = lector.nextInt();
                         nuevoLibro.setId(id);
                         
@@ -148,67 +157,78 @@ public class BibliotecaTrabajoGrupal {
                 case 3:
                     encontrado = false;
                     buscarExistencia = false;
-                    System.out.println("Ingrese su correo y contraseña");
+                     if(listaUsuarios.isEmpty()){
+                          System.out.println("No existen personas registradas...");
+                          break;
+                      }
+                    System.out.println("Ingrese su correo y contrasenia");
                     System.out.print("Correo: ");
                     String intentoCorreo = lector.next();
-                    System.out.print("Contraseña: ");
+                    System.out.print("Contrasenia: ");
                     String intentoContrasenia = lector.next();
                     
                     lector.nextLine();
              
                     for (Usuario solicitante : listaUsuarios){
-                        if (intentoCorreo.equals(solicitante.getCorreo()) && intentoContrasenia.equals(solicitante.getContrasenia())){
+                        if (intentoCorreo.equals(solicitante.getCorreo()) && intentoContrasenia.equals(solicitante.getContrasenia())) {
                             encontrado = true;
                             System.out.println("HOLA!!" + solicitante.getDatosUsuario().getNombre());
-                            System.out.println("Que libro desea solicitar");
-                            String libroSolicitado = lector.nextLine();
-                            for(Libro buscarLibro: listaLibros){
-                                if(libroSolicitado.equals(buscarLibro.getNuevoLibro().getTitulo())){
-                                    SistemaPrestamo prestamo = new SistemaPrestamo();
-                                    System.out.println(prestamo.prestamoLibro(solicitante, buscarLibro));
-                                    Date obtenerFechaActual = new Date();
-                                    int dia = obtenerFechaActual.getDay();
-                                    int mes = obtenerFechaActual.getMonth();
-                                    int anio =obtenerFechaActual.getYear();
-                                    
-                                    Date inicioPrestamo = new Date();
-                                    inicioPrestamo = new Date (anio - 1900,mes-1,dia);
-                                    prestamo.setInicioPrestamo(inicioPrestamo);
-                                    
-                                    Date finPrestamo = new Date();
-                                    finPrestamo = new Date(anio - 1900, mes - 1, dia + 7);
-                                    prestamo.setFinPrestamo(finPrestamo);
-                                    
-                                    prestamo.setLibroPrestado(buscarLibro);
-                                    prestamo.setUsuarioPrestado(solicitante);
-                                    
-                                    listaPrestamos.add(prestamo);
-                                    
-                                    buscarExistencia = true;
-                                    break;
+                            if (listaLibros.isEmpty()) {
+                                System.out.println("No existen libros registrados...");
+                                break;
+                            } else {
+                                System.out.println("Que libro desea solicitar");
+                                String libroSolicitado = lector.nextLine();
+                                for (Libro buscarLibro : listaLibros) {
+                                    if (libroSolicitado.equals(buscarLibro.getNuevoLibro().getTitulo())) {
+                                        SistemaPrestamo prestamo = new SistemaPrestamo();
+                                        System.out.println(prestamo.prestamoLibro(solicitante, buscarLibro));
+                                        Date obtenerFechaActual = new Date();
+                                        int dia = obtenerFechaActual.getDay();
+                                        int mes = obtenerFechaActual.getMonth();
+                                        int anio = obtenerFechaActual.getYear();
+
+                                        Date inicioPrestamo = new Date();
+                                        inicioPrestamo = new Date(anio - 1900, mes - 1, dia);
+                                        prestamo.setInicioPrestamo(inicioPrestamo);
+
+                                        Date finPrestamo = new Date();
+                                        finPrestamo = new Date(anio - 1900, mes - 1, dia + 7);
+                                        prestamo.setFinPrestamo(finPrestamo);
+
+                                        prestamo.setLibroPrestado(buscarLibro);
+                                        prestamo.setUsuarioPrestado(solicitante);
+
+                                        listaPrestamos.add(prestamo);
+
+                                        buscarExistencia = true;
+                                        break;
+                                    }
                                 }
+                                if (!buscarExistencia) {
+                                    System.out.println("No disponemos de ese libro por el momento ");
+                                }
+                                break;
                             }
-                             if (!buscarExistencia){
-                                System.out.println("No disponemos de ese libro por el momento ");
-                            } 
-                            break;
+                            
                         }
                     }
                     if(!encontrado){
-                            System.out.println("Correo o contraseña INCORRECTOS");
+                            System.out.println("Correo o contrasenia INCORRECTA");
                         }
                     break;
                     
                 case 4:
                     encontrado = false;
                     buscarExistencia = false;
-                    System.out.println("Ingrese su correo y contraseña");
+                    System.out.println("Ingrese su correo y contrasenia");
                     System.out.print("Correo: ");
                     intentoCorreo = lector.next();
-                    System.out.print("Contraseña: ");
+                    System.out.print("Contrasenia: ");
                     intentoContrasenia = lector.next();  
                     
                     lector.nextLine();
+                   
                     
                     for (Usuario solicitante : listaUsuarios){
                         if(intentoCorreo.equals(solicitante.getCorreo()) && intentoContrasenia.equals(solicitante.getContrasenia())){
@@ -238,7 +258,7 @@ public class BibliotecaTrabajoGrupal {
                         }
                     }
                     if(!encontrado){
-                            System.out.println("Correo o contraseña INCORRECTOS");
+                            System.out.println("Correo o contrasenia INCORRECTA");
                         }
                     break;
                 case 5:

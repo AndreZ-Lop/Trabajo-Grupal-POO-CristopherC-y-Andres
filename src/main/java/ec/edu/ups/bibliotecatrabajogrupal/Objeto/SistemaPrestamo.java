@@ -67,11 +67,11 @@ public class SistemaPrestamo {
          if(solicitante.getEstadoMembresia() && libroSolicitado.getEstado()){
              solicitante.setEstadoMembresia(false);
              libroSolicitado.setEstado(false);
-             return "El préstamo se realizó con éxito a: " + solicitante.getDatosUsuario().getNombre();
+             return "El prestamo se realizo con exito a: " + solicitante.getDatosUsuario().getNombre();
          }else if(!solicitante.getEstadoMembresia()){
              return "Error: El usuario ya tiene un libro en su poder.";
          }else{
-             return "Error: El libro solicitado no está disponible actualmente.";
+             return "Error: El libro solicitado no esta disponible actualmente.";
          }
     }
     
@@ -79,7 +79,7 @@ public class SistemaPrestamo {
          if(!solicitante.getEstadoMembresia() && !libroSolicitado.getEstado()){
              solicitante.setEstadoMembresia(true);
              libroSolicitado.setEstado(true);
-             return "La devolucion se realizó con éxito el usuario: " + solicitante.getDatosUsuario().getNombre() + " NO DEBE TIENE DEUDAS";
+             return "La devolucion se realizo con exito el usuario: " + solicitante.getDatosUsuario().getNombre() + " NO  TIENE DEUDAS";
          }else if(solicitante.getEstadoMembresia()){
              return "Error: El usuario no debe devolver ningun libro.";
          }else{
