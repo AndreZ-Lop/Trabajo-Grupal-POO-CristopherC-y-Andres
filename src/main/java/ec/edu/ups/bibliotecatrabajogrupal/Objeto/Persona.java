@@ -58,7 +58,7 @@ public class Persona {
         String resultado = "\n";
         resultado += "Nombre del usuario: " + nombre + "\n";
         resultado += "Cedula : " + cedula + "\n";
-        resultado += "Edad: " + fechaNac;
+        resultado += "Fecha de Nacimiento: " + fechaNac;
         resultado += "Apellido: " + apellido;
         return resultado;
     }

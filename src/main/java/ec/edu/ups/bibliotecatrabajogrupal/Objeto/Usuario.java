@@ -67,7 +67,12 @@ public class Usuario {
         }else{
             resultado += "No puede solicitar un libro" + "\n";
         }
-        resultado += "Datos Usuario: " + datosUsuario;
+        resultado += "Datos Usuario: " + datosUsuario + "\n";
+        if(restriccionesUsuario){
+            resultado += "Esta cuenta tiene restricciones";
+        }else{
+            resultado += "Esta cuenta no tiene restricciones";
+        }
         return resultado;
     } 
     
