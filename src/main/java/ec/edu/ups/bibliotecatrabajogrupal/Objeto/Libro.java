@@ -1,29 +1,59 @@
 package ec.edu.ups.bibliotecatrabajogrupal.Objeto;
 import java.util.ArrayList;
+import java.util.Date;
 public class Libro {
-    private DatoLibro nuevoLibro;
-    private Autor autorLibro; 
+    private String titulo;
+    private int ISBN;
+    private String genero;
+    private Date fechaPublicacion;
+    private Autor autorLibro;
+    private String idiomaLibro;
     private boolean estado;
 
     public Libro() {
         
     }
-    
-    public Libro(boolean estado){
-        this.estado=estado;
-    }
 
-    public Libro(DatoLibro nuevoLibro, Autor autorLibro) {
-        this.nuevoLibro = nuevoLibro;
+    public Libro(String titulo, int ISBN, String genero, Date fechaPublicacion, Autor autorLibro, String idiomaLibro, boolean estado) {
+        this.titulo = titulo;
+        this.ISBN = ISBN;
+        this.genero = genero;
+        this.fechaPublicacion = fechaPublicacion;
         this.autorLibro = autorLibro;
+        this.idiomaLibro = idiomaLibro;
+        this.estado = estado;
     }
 
-    public DatoLibro getNuevoLibro() {
-        return nuevoLibro;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNuevoLibro(DatoLibro nuevoLibro) {
-        this.nuevoLibro = nuevoLibro;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public int getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(int ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
 
     public Autor getAutorLibro() {
@@ -34,7 +64,15 @@ public class Libro {
         this.autorLibro = autorLibro;
     }
 
-    public boolean getEstado() {
+    public String getIdiomaLibro() {
+        return idiomaLibro;
+    }
+
+    public void setIdiomaLibro(String idiomaLibro) {
+        this.idiomaLibro = idiomaLibro;
+    }
+
+    public boolean isEstado() {
         return estado;
     }
 
@@ -42,11 +80,17 @@ public class Libro {
         this.estado = estado;
     }
     
+    
+    
     @Override
      public String toString(){
         String resultado = "\n";
         resultado += "--- DATOS LIBRO --- " + "\n";
-        resultado += nuevoLibro + "\n";
+        resultado += titulo + "\n";
+        resultado += ISBN + "\n";
+        resultado += genero + "\n";
+        resultado += fechaPublicacion + "\n";
+        resultado += idiomaLibro + "\n";
         resultado += "--- AUTOR --- " + "\n";
         resultado += autorLibro + "\n";
         if (estado){
@@ -62,9 +106,9 @@ public class Libro {
         String libroTitulo = "";
         Libro datosLibro = null;
         for(Libro busqueda:listaLibros){
-            if(libroBuscado.equals(busqueda.getNuevoLibro().getTitulo())){
+            if(libroBuscado.equals(busqueda.getTitulo())){
                 busquedaAcer = true;
-                libroTitulo = busqueda.getNuevoLibro().getTitulo();
+                libroTitulo = busqueda.getTitulo();
                 datosLibro = busqueda;
             }
         }
