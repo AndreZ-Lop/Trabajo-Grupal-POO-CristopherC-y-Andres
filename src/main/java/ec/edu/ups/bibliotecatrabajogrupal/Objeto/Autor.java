@@ -1,18 +1,22 @@
 package ec.edu.ups.bibliotecatrabajogrupal.Objeto;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 public class Autor extends Persona {
     private String seudonimo;
     private String nacionalidad;
     private String generoAutor;
-    private List<Libro> librosAutor
+    private List<Libro> librosAutor;
     
     public Autor(){ 
+        this.librosAutor = new ArrayList();
     }
     public Autor(String nombre,String cedula, Date fechaNac,String apellido, String seudonimo, String nacionalidad ,String generoAutor){
         super(nombre,cedula,fechaNac,apellido);
         this.seudonimo = seudonimo;
         this.nacionalidad = nacionalidad;
         this.generoAutor = generoAutor;
+        this.librosAutor = new ArrayList();
     }
     public String getSeudonimo() {
         return seudonimo;
@@ -38,10 +42,15 @@ public class Autor extends Persona {
         this.generoAutor = generoAutor;
     }
     
+    public void agregarLibro(Libro libritos){
+        librosAutor.add(libritos);
+    }
     
     @Override
      public String toString(){
         String resultado = "\n";
+        resultado += " === DATOS AUTOR ===" + "\n";
+        resultado +=  super.toString() + "\n"; 
         resultado += "Apodo: " + seudonimo + "\n";
         resultado += "Nacionalidad: " + nacionalidad + "\n";
         resultado += "Genero del Autor: " + generoAutor;

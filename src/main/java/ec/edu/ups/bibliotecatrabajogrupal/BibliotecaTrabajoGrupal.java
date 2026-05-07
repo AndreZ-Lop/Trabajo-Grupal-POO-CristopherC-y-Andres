@@ -98,7 +98,7 @@ public class BibliotecaTrabajoGrupal {
                     break;
                 case 2:
                     do{
-                        
+                        Libro nuevoLibro = new Libro();
                         Autor nuevoAutor = new Autor();
                         System.out.println("--- Datos ---");
                         System.out.println("Ingreso de datos del autor");
