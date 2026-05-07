@@ -58,7 +58,7 @@ public class SistemaPrestamo {
                    """;
         resultado+="Inicio prestamo: " + inicioPrestamo + "\n";
         resultado+="Fin prestamo: " + finPrestamo + "\n";
-        resultado+="Prestado a: " + usuarioPrestado.getDatosUsuario().getNombre() + "\n";
+        resultado+="Prestado a: " + usuarioPrestado.getNombre()+ usuarioPrestado.getApellido() + "\n";
         resultado+="Libro prestado: " + libroPrestado.getNuevoLibro().getTitulo() + "\n";
         resultado+="RECUERDA!! el libro debe ser devuelto en una semana";
         return resultado;
@@ -67,7 +67,7 @@ public class SistemaPrestamo {
          if(solicitante.getEstadoMembresia() && libroSolicitado.getEstado()){
              solicitante.setEstadoMembresia(false);
              libroSolicitado.setEstado(false);
-             return "El prestamo se realizo con exito a: " + solicitante.getDatosUsuario().getNombre();
+             return "El prestamo se realizo con exito a: " + solicitante.getNombre() + " " + solicitante.getApellido();
          }else if(!solicitante.getEstadoMembresia()){
              return "Error: El usuario ya tiene un libro en su poder.";
          }else{
@@ -79,11 +79,11 @@ public class SistemaPrestamo {
          if(!solicitante.getEstadoMembresia() && !libroSolicitado.getEstado()){
              solicitante.setEstadoMembresia(true);
              libroSolicitado.setEstado(true);
-             return "La devolucion se realizo con exito el usuario: " + solicitante.getDatosUsuario().getNombre() + " NO  TIENE DEUDAS";
+             return "La devolucion se realizo con exito el usuario: " + solicitante.getNombre() +"  "+ solicitante.getApellido();
          }else if(solicitante.getEstadoMembresia()){
              return "Error: El usuario no debe devolver ningun libro.";
          }else{
-             return "Error: El libro solicitado no debe ser devuelto por el usuario." + solicitante.getDatosUsuario().getNombre();
+             return "Error: El libro solicitado no debe ser devuelto por el usuario." + solicitante.getNombre() +"  "+ solicitante.getApellido();
          }
     }
 }
