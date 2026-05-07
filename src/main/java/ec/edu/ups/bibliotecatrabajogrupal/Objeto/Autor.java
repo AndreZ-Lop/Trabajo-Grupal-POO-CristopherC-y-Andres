@@ -4,22 +4,16 @@ public class Autor extends Persona {
     private String seudonimo;
     private String nacionalidad;
     private String generoAutor;
+    private List<Libro> librosAutor
     
-    public Autor(){
-        
+    public Autor(){ 
     }
-    
-    public Autor(String nombre,String cedula, Date fechaNac,String apellido, String seudonimo,
-            String nacionalidad ,String generoAutor){
+    public Autor(String nombre,String cedula, Date fechaNac,String apellido, String seudonimo, String nacionalidad ,String generoAutor){
         super(nombre,cedula,fechaNac,apellido);
         this.seudonimo = seudonimo;
         this.nacionalidad = nacionalidad;
         this.generoAutor = generoAutor;
     }
-    
-    
-    
-
     public String getSeudonimo() {
         return seudonimo;
     }

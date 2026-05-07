@@ -43,29 +43,29 @@ public class BibliotecaTrabajoGrupal {
                 case 1:
                     boolean continuaRes;
                     do{
-                        Persona nuevosDatos = new Persona();
+                        Usuario nuevoUsuario = new Usuario();
                         continuaRes = false;
                         System.out.println("Datos del Usuario");
                         System.out.println("Ingrese su nombre: ");
                         String nombre = lector.next();
-                        nuevosDatos.setNombre(nombre);
+                        nuevoUsuario.setNombre(nombre);
                         
                         System.out.println("Ingrese su apellido: ");
                         String apellido = lector.next();
-                        nuevosDatos.setApellido(apellido);
+                        nuevoUsuario.setApellido(apellido);
                 
                         System.out.println("Ingrese su cedula: ");
                         String cedula = lector.next();
-                        nuevosDatos.setCedula(cedula);
+                        nuevoUsuario.setCedula(cedula);
                       
                         System.out.println("Ingrese su fecha de nacimiento (DD MM AAAA)");
                         int dia = lector.nextInt();
                         int mes = lector.nextInt();
                         int anio = lector.nextInt();
                         Date fechaNac = new Date(anio-1900,mes-1,dia);
-                        nuevosDatos.setFechaNac(fechaNac);
+                        nuevoUsuario.setFechaNac(fechaNac);
                         
-                        boolean restricion = nuevosDatos.esMayorDeEdad(fechaNac);
+                        boolean restricion = nuevoUsuario.esMayorDeEdad(fechaNac);
                         if (!restricion){
                               System.out.println("Su cuenta tendra resctricciones de edad desea continuar? (S/N)");
                               String respuesta = lector.next();
@@ -76,11 +76,7 @@ public class BibliotecaTrabajoGrupal {
                         
                         if(!continuaRes){
                             
-                            Usuario nuevoUsuario = new Usuario();
-                            
                             nuevoUsuario.restriccionesUsuario(restricion,nuevoUsuario);
-
-                            nuevoUsuario.setDatosUsuario(nuevosDatos);
 
                             System.out.println("Creacion usuario");
                             System.out.println("Ingrese su correo: ");
@@ -102,7 +98,7 @@ public class BibliotecaTrabajoGrupal {
                     break;
                 case 2:
                     do{
-                        DatoLibro nuevoLibro = new DatoLibro();
+                        
                         Autor nuevoAutor = new Autor();
                         System.out.println("--- Datos ---");
                         System.out.println("Ingreso de datos del autor");
