@@ -1,22 +1,25 @@
 package ec.edu.ups.bibliotecatrabajogrupal.Objeto;
-public class Usuario {
+
+import java.util.Date;
+
+public class Usuario extends Persona{
     private String correo;
     private String contrasenia;
     private boolean estadoMembresia;
-    private Persona datosUsuario;
     private boolean restriccionesUsuario;
 
-    public Usuario(){
+    public Usuario() {
     }
 
-    public Usuario(String correo, String contrasenia, boolean estadoMembresia, Persona datosUsuario, boolean restriccionesUsuario) {
+    public Usuario(String correo, String contrasenia, boolean estadoMembresia, boolean restriccionesUsuario, String nombre, String cedula, Date fechaNac, String apellido) {
+        super(nombre, cedula, fechaNac, apellido);
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.estadoMembresia = estadoMembresia;
-        this.datosUsuario = datosUsuario;
         this.restriccionesUsuario = restriccionesUsuario;
     }
-
+    
+    
     public String getCorreo() {
         return correo;
     }
@@ -40,14 +43,6 @@ public class Usuario {
     public void setEstadoMembresia(boolean estadoMembresia) {
         this.estadoMembresia = estadoMembresia;
     }
-
-    public Persona getDatosUsuario() {
-        return datosUsuario;
-    }
-
-    public void setDatosUsuario(Persona datosUsuario) {
-        this.datosUsuario = datosUsuario;
-    }
     
     public boolean getRestricionesUsuario(){
         return restriccionesUsuario;
@@ -67,7 +62,8 @@ public class Usuario {
         }else{
             resultado += "No puede solicitar un libro" + "\n";
         }
-        resultado += "Datos Usuario: " + datosUsuario + "\n";
+        resultado += "Datos Usuario: " + "\n";
+        resultado+= super.toString() + "\n";
         if(restriccionesUsuario){
             resultado += "Esta cuenta tiene restricciones";
         }else{
