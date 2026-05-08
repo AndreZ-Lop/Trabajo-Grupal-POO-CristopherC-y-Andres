@@ -1,17 +1,17 @@
 
 package ec.edu.ups.bibliotecatrabajogrupal.Objeto;
 import java.util.Date;
-public class SistemaPrestamo {
+public class Prestamo {
     private Date inicioPrestamo;
     private Date finPrestamo;
     private Usuario usuarioPrestado;
     private Libro libroPrestado;
     
-    public SistemaPrestamo(){
+    public Prestamo(){
         
     }
     
-    public SistemaPrestamo(Date fechaInc, Date fechaFin, Usuario usuarioPrestado, Libro libroPrestado){
+    public Prestamo(Date fechaInc, Date fechaFin, Usuario usuarioPrestado, Libro libroPrestado){
         this.inicioPrestamo = fechaInc;
         this.finPrestamo = fechaFin;
         this.usuarioPrestado = usuarioPrestado;
@@ -59,7 +59,7 @@ public class SistemaPrestamo {
         resultado+="Inicio prestamo: " + inicioPrestamo + "\n";
         resultado+="Fin prestamo: " + finPrestamo + "\n";
         resultado+="Prestado a: " + usuarioPrestado.getNombre()+ usuarioPrestado.getApellido() + "\n";
-        resultado+="Libro prestado: " + libroPrestado.getNuevoLibro().getTitulo() + "\n";
+        resultado+="Libro prestado: " + libroPrestado.getTitulo() + "\n";
         resultado+="RECUERDA!! el libro debe ser devuelto en una semana";
         return resultado;
     }

@@ -72,7 +72,7 @@ public class Libro {
         this.idiomaLibro = idiomaLibro;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 

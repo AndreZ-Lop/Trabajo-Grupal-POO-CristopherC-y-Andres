@@ -6,9 +6,8 @@ package ec.edu.ups.bibliotecatrabajogrupal;
 import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Autor;
 import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Usuario;
 import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Libro;
-import ec.edu.ups.bibliotecatrabajogrupal.Objeto.DatoLibro;
 import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Persona;
-import ec.edu.ups.bibliotecatrabajogrupal.Objeto.SistemaPrestamo;
+import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Prestamo;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +18,7 @@ public class BibliotecaTrabajoGrupal {
         
         ArrayList<Usuario> listaUsuarios = new ArrayList();
         ArrayList<Libro> listaLibros = new ArrayList();
-        ArrayList<SistemaPrestamo> listaPrestamos = new ArrayList();
+        ArrayList<Prestamo> listaPrestamos = new ArrayList();
         
         System.out.println("--- MENU ---");
         System.out.println("1 - Registrar Usuario");
@@ -177,7 +176,7 @@ public class BibliotecaTrabajoGrupal {
                                 String libroSolicitado = lector.nextLine();
                                 for (Libro buscarLibro : listaLibros) {
                                     if (libroSolicitado.equals(buscarLibro.getNuevoLibro().getTitulo())) {
-                                        SistemaPrestamo prestamo = new SistemaPrestamo();
+                                        Prestamo prestamo = new Prestamo();
                                         System.out.println(prestamo.prestamoLibro(solicitante, buscarLibro));
                                         Date obtenerFechaActual = new Date();
                                         int dia = obtenerFechaActual.getDay();
@@ -234,10 +233,10 @@ public class BibliotecaTrabajoGrupal {
                             String libroSolicitado = lector.nextLine();
                             for(Libro buscarLibro: listaLibros){
                                 if(libroSolicitado.equals(buscarLibro.getNuevoLibro().getTitulo())){
-                                    SistemaPrestamo devolucion = new SistemaPrestamo();
+                                    Prestamo devolucion = new Prestamo();
                                     System.out.println(devolucion.devolucionLibro(solicitante, buscarLibro));
                                     for (int i = 0;i<listaPrestamos.size();i++){
-                                        SistemaPrestamo prestamoActual = listaPrestamos.get(i);
+                                        Prestamo prestamoActual = listaPrestamos.get(i);
                                         if(prestamoActual.getLibroPrestado().getNuevoLibro().equals(buscarLibro.getNuevoLibro())){
                                             listaPrestamos.remove(i);
                                             break;
