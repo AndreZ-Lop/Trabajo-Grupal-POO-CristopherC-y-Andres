@@ -6,7 +6,7 @@ public class Autor extends Persona {
     private String seudonimo;
     private String nacionalidad;
     private String generoAutor;
-    private List<Libro> librosAutor;
+    private List<Autor> librosAutores;
     
     public Autor(){ 
         this.librosAutor = new ArrayList();

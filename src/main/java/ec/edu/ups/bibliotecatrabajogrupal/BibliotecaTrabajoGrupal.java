@@ -15,7 +15,7 @@ import java.util.Date;
 public class BibliotecaTrabajoGrupal {
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
-        
+        ArrayList<Autor> listaAutores = new ArrayList();
         ArrayList<Usuario> listaUsuarios = new ArrayList();
         ArrayList<Libro> listaLibros = new ArrayList();
         ArrayList<Prestamo> listaPrestamos = new ArrayList();
@@ -23,12 +23,12 @@ public class BibliotecaTrabajoGrupal {
         System.out.println("--- MENU ---");
         System.out.println("1 - Registrar Usuario");
         System.out.println("2 - Registrar Libros");
-        System.out.println("3 - Prestamos Libros");
-        System.out.println("4 - Devolver libro");
-        System.out.println("5 - Mostrar todos los libros");
-        System.out.println("6 - Buscar libro");
-        System.out.println("7 - Salir menu");
-        
+        System.out.println("3 - Registrar Autor");
+        System.out.println("4 - Prestamos Libros");
+        System.out.println("5 - Devolver libro");
+        System.out.println("6 - Mostrar todos los libros");
+        System.out.println("7 - Buscar libro");
+        System.out.println("8 - Salir menu");
         int opcion = lector.nextByte();
         lector.nextLine();
         
@@ -97,59 +97,77 @@ public class BibliotecaTrabajoGrupal {
                     break;
                 case 2:
                     do{
-                        Libro nuevoLibro = new Libro();
-                        Autor nuevoAutor = new Autor();
-                        System.out.println("--- Datos ---");
-                        System.out.println("Ingreso de datos del autor");
-                        System.out.println("Nombre: ");
-                        String nombre = lector.next();
-                        nuevoAutor.setNombre(nombre);
-                        
-                        System.out.println("Apellido: ");
-                        String apellido = lector.next();
-                        nuevoAutor.setApellido(apellido);
-                        
-                        System.out.println("seudonimo del autor: ");
-                        String apodo = lector.next();
-                        nuevoAutor.setSeudonimo(apodo);
-                        
-                        System.out.println("Nacionalidad: ");
-                        String nacionalidad = lector.next();
-                        nuevoAutor.setNacionalidad(nacionalidad);
-                        
-                        System.out.println("Ingrese el genero: ");
-                        String genero = lector.next();
-                        nuevoAutor.setGeneroAutor(genero);
-                        
-                        
+                        boolean registroEx = false;
+                        System.out.println("===Registro Libros===");
+                        System.out.println("Ingrese el titulo del libro: ");
+                        String titulosLbr = lector.nextLine();
+                        System.out.println("Ingrese el codigo del ISBN: ");
+                        int isbnLbr = lector.nextInt();
                         lector.nextLine();
-                        
-                        System.out.println("Ingreso de datos del libro: ");
-                        System.out.println("Titulo del Libro: ");
-                        String titulo = lector.nextLine();
-                        nuevoLibro.setTitulo(titulo);
-                        
-                        System.out.println("Id del libro: ");
-                        int id = lector.nextInt();
-                        nuevoLibro.setId(id);
-                        
-                        lector.nextLine();
-                        
-                        System.out.println("Desea registrar otro libro? (S/N)");
+                        System.out.println("Ingrese el genero del libro: ");
+                        String generoLbr = lector.next();
+                        System.out.println("Ingrese la fecha de publicacion: (DD MM AAAA)");
+                        byte dia = lector.nextByte();
+                        byte mes = lector.nextByte();
+                        int anio= lector.nextInt();
+                        Date fechaPub = new Date(anio-1900,mes -1,dia);
+                        System.out.println("Ingrese el idioma del libro: ");
+                        String idiomaLbr = lector.next();
+                        boolean estado = true;
+                        System.out.println("Ingrese el autor del  libro: ");
+                        String autorLbr =lector.nextLine();
+                        if (listaAutores.isEmpty()){
+                            System.out.println("Lista de Autores esta vacia....");
+                        }
+                        for(Autor autoritos : listaAutores){
+                            if(autorLbr.equals(autoritos.getNombre())){
+                                System.out.println("El autor si esta registrado :)");
+                                Libro nuevoLibro = new Libro(titulosLbr,isbnLbr,generoLbr,fechaPub,autoritos,idiomaLbr,estado);
+                                listaLibros.add(nuevoLibro);
+                                registroEx = true;
+                                break;
+                            }else{
+                                System.out.println("El autor no esta registrado...");
+                            }
+                        }
+                        if(!registroEx){
+                            System.out.println("No se peude registrar un libro sin un autor...");
+                        }else{
+                            System.out.println("El libro se pudo registrar correctamente...");
+                        }
+                        System.out.println("Desea crear otro libro? (S/N)");
                         decision = lector.next();
-                        
-                        Libro nuevo = new Libro();
-                        nuevo.setNuevoLibro(nuevoLibro);
-                        nuevo.setAutorLibro(nuevoAutor);
-                        nuevo.setEstado(true);
-                        
-                        listaLibros.add(nuevo);
-                        
-                        numeroLibros++;
+                    }while(decision.equalsIgnoreCase("S"));
+                    break;
+                case 3 :
+                    do{
+                        System.out.println("Ingrese el nombre: ");
+                        String nomAtr = lector.nextLine();
+                        System.out.println("Ingrese la cedula: ");
+                        String cedAtr = lector.nextLine();
+                        System.out.println("Ingrese la fecha de nacimiento: DD MM AAAA");
+                        byte dia = lector.nextByte();
+                        byte mes = lector.nextByte();
+                        int anio= lector.nextInt();
+                        Date fechaNacAtr = new Date(anio-1900,mes -1,dia);
+                        lector.nextLine();
+                        System.out.println("Ingrese el apellido: ");
+                        String appAtr = lector.nextLine();
+                        System.out.println("Ingrese el seudonimo: ");
+                        String seudAtr = lector.nextLine();
+                        System.out.println("Ingrese la nacionalidad:  ");
+                        String nacAtr= lector.nextLine();
+                        System.out.println("Ingrese el genero del Autor: ");
+                        String genAtr = lector.nextLine();
+                        Autor nuevosAutor = new Autor(nomAtr,cedAtr,fechaNacAtr,appAtr,seudAtr,nacAtr,genAtr);
+                        listaAutores.add(nuevosAutor);
+                        System.out.println("Desea crear otro autor? (S/N)");
+                        decision = lector.next();
                         
                     }while(decision.equalsIgnoreCase("S"));
                     break;
-                case 3:
+    
+                case 4:
                     encontrado = false;
                     buscarExistencia = false;
                      if(listaUsuarios.isEmpty()){
@@ -213,7 +231,7 @@ public class BibliotecaTrabajoGrupal {
                         }
                     break;
                     
-                case 4:
+                case 5:
                     encontrado = false;
                     buscarExistencia = false;
                     System.out.println("Ingrese su correo y contrasenia");
@@ -256,7 +274,7 @@ public class BibliotecaTrabajoGrupal {
                             System.out.println("Correo o contrasenia INCORRECTA");
                         }
                     break;
-                case 5:
+                case 6:
                     if (numeroLibros == 0){
                         System.out.println("No existen libros registrados");
                     }else{
@@ -265,7 +283,7 @@ public class BibliotecaTrabajoGrupal {
                         }
                     }
                     break;
-                case 6:
+                case 7:
                     if (numeroLibros == 0){
                         System.out.println("No existen libros registrados");
                     }else{
@@ -278,13 +296,15 @@ public class BibliotecaTrabajoGrupal {
                 default:
                     System.out.println("Ninguna Opcion Seleccionada");
             }
-            System.out.println("--- MENU ---");
-            System.out.println("1 - Registrar Usuario");
-            System.out.println("2 - Registrar Libros");
-            System.out.println("3 - Prestamos Libros");
-            System.out.println("4 - Devolver libro");
-            System.out.println("5 - Mostrar todos los libros");
-            System.out.println("6 - Salir menu");
+              System.out.println("--- MENU ---");
+              System.out.println("1 - Registrar Usuario");
+              System.out.println("2 - Registrar Libros");
+              System.out.println("3 - Registrar Autor");
+              System.out.println("4 - Prestamos Libros");
+              System.out.println("5 - Devolver libro");
+              System.out.println("6 - Mostrar todos los libros");
+              System.out.println("7 - Buscar libro");
+              System.out.println("8 - Salir menu");
 
             opcion = lector.nextByte();
             lector.nextLine();

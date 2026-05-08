@@ -9,6 +9,7 @@ public class Libro {
     private Autor autorLibro;
     private String idiomaLibro;
     private boolean estado;
+    private boolean restriccionesLibro;
 
     public Libro() {
         
@@ -78,6 +79,14 @@ public class Libro {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public boolean getRestriccionesLibro() {
+        return restriccionesLibro;
+    }
+
+    public void setRestriccionesLibro(boolean restriccionesLibro) {
+        this.restriccionesLibro = restriccionesLibro;
     }
     
     
