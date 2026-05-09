@@ -6,17 +6,17 @@ public class Autor extends Persona {
     private String seudonimo;
     private String nacionalidad;
     private String generoAutor;
-    private List<Autor> librosAutores;
+    private List<Libro> librosAutores;
     
     public Autor(){ 
-        this.librosAutor = new ArrayList();
+        this.librosAutores = new ArrayList();
     }
     public Autor(String nombre,String cedula, Date fechaNac,String apellido, String seudonimo, String nacionalidad ,String generoAutor){
         super(nombre,cedula,fechaNac,apellido);
         this.seudonimo = seudonimo;
         this.nacionalidad = nacionalidad;
         this.generoAutor = generoAutor;
-        this.librosAutor = new ArrayList();
+        this.librosAutores = new ArrayList();
     }
     public String getSeudonimo() {
         return seudonimo;
@@ -43,7 +43,7 @@ public class Autor extends Persona {
     }
     
     public void agregarLibro(Libro libritos){
-        librosAutor.add(libritos);
+        librosAutores.add(libritos);
     }
     
     @Override

@@ -64,11 +64,11 @@ public class Prestamo {
         return resultado;
     }
     public String prestamoLibro(Usuario solicitante,Libro libroSolicitado){
-         if(solicitante.getEstadoMembresia() && libroSolicitado.getEstado()){
-             solicitante.setEstadoMembresia(false);
+         if(solicitante.getMembresiaU().getEstado() && libroSolicitado.getEstado()){
+             solicitante.cambioEstadoMemebresia(false);
              libroSolicitado.setEstado(false);
              return "El prestamo se realizo con exito a: " + solicitante.getNombre() + " " + solicitante.getApellido();
-         }else if(!solicitante.getEstadoMembresia()){
+         }else if(!solicitante.getMembresiaU().getEstado()){
              return "Error: El usuario ya tiene un libro en su poder.";
          }else{
              return "Error: El libro solicitado no esta disponible actualmente.";
@@ -76,11 +76,11 @@ public class Prestamo {
     }
     
     public String devolucionLibro(Usuario solicitante,Libro libroSolicitado){
-         if(!solicitante.getEstadoMembresia() && !libroSolicitado.getEstado()){
-             solicitante.setEstadoMembresia(true);
+         if(!solicitante.getMembresiaU().getEstado() && !libroSolicitado.getEstado()){
+             solicitante.cambioEstadoMemebresia(true);
              libroSolicitado.setEstado(true);
              return "La devolucion se realizo con exito el usuario: " + solicitante.getNombre() +"  "+ solicitante.getApellido();
-         }else if(solicitante.getEstadoMembresia()){
+         }else if(solicitante.getMembresiaU().getEstado()){
              return "Error: El usuario no debe devolver ningun libro.";
          }else{
              return "Error: El libro solicitado no debe ser devuelto por el usuario." + solicitante.getNombre() +"  "+ solicitante.getApellido();

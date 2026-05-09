@@ -5,17 +5,16 @@ import java.util.Date;
 public class Usuario extends Persona{
     private String correo;
     private String contrasenia;
-    private boolean estadoMembresia;
     private boolean restriccionesUsuario;
+    private Membresia membresiaU;
 
     public Usuario() {
     }
 
-    public Usuario(String correo, String contrasenia, boolean estadoMembresia, boolean restriccionesUsuario, String nombre, String cedula, Date fechaNac, String apellido) {
+    public Usuario(String correo, String contrasenia, boolean restriccionesUsuario, String nombre, String cedula, Date fechaNac, String apellido) {
         super(nombre, cedula, fechaNac, apellido);
         this.correo = correo;
         this.contrasenia = contrasenia;
-        this.estadoMembresia = estadoMembresia;
         this.restriccionesUsuario = restriccionesUsuario;
     }
     
@@ -35,14 +34,6 @@ public class Usuario extends Persona{
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-
-    public boolean getEstadoMembresia() {
-        return estadoMembresia;
-    }
-
-    public void setEstadoMembresia(boolean estadoMembresia) {
-        this.estadoMembresia = estadoMembresia;
-    }
     
     public boolean getRestricionesUsuario(){
         return restriccionesUsuario;
@@ -52,23 +43,28 @@ public class Usuario extends Persona{
         this.restriccionesUsuario = restriccionesUsuario;
     }
     
+    public void agregarMembresia(String tipoMembresia, boolean estado, String codigoDeMembresia){
+        Membresia membresiaUsuario = new Membresia(tipoMembresia, estado, codigoDeMembresia);
+        this.membresiaU=membresiaUsuario;
+    }
+    
+    public Membresia getMembresiaU(){
+        return membresiaU;
+    }
+    
     @Override
     public String toString(){
         String resultado = "";
         resultado += "Correo: " + correo + "\n";
         resultado += "Contraseña: " + contrasenia + "\n";
-        if (estadoMembresia){
-            resultado += "Puede solicitar un libro" + "\n";
-        }else{
-            resultado += "No puede solicitar un libro" + "\n";
-        }
         resultado += "Datos Usuario: " + "\n";
         resultado+= super.toString() + "\n";
         if(restriccionesUsuario){
-            resultado += "Esta cuenta tiene restricciones";
+            resultado += "Esta cuenta tiene restricciones" + "\n";
         }else{
-            resultado += "Esta cuenta no tiene restricciones";
+            resultado += "Esta cuenta no tiene restricciones" + "\n";
         }
+        resultado+= membresiaU + "\n";
         return resultado;
     } 
     
@@ -79,6 +75,10 @@ public class Usuario extends Persona{
         }else{
             return "";
         }
+    }
+    
+    public void cambioEstadoMemebresia(boolean cambio){
+        this.membresiaU.setEstado(cambio);
     }
         
 }

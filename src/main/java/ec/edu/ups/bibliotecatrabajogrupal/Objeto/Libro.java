@@ -15,7 +15,7 @@ public class Libro {
         
     }
 
-    public Libro(String titulo, int ISBN, String genero, Date fechaPublicacion, Autor autorLibro, String idiomaLibro, boolean estado) {
+    public Libro(String titulo, int ISBN, String genero, Date fechaPublicacion, Autor autorLibro, String idiomaLibro, boolean estado, boolean restriccionesLibro) {
         this.titulo = titulo;
         this.ISBN = ISBN;
         this.genero = genero;
@@ -23,6 +23,7 @@ public class Libro {
         this.autorLibro = autorLibro;
         this.idiomaLibro = idiomaLibro;
         this.estado = estado;
+        this.restriccionesLibro = restriccionesLibro;
     }
 
     public String getTitulo() {
@@ -109,23 +110,4 @@ public class Libro {
         }
         return resultado;
     }
-    
-    public String busquedaLibro(ArrayList<Libro>listaLibros,String libroBuscado){
-        boolean busquedaAcer = false;
-        String libroTitulo = "";
-        Libro datosLibro = null;
-        for(Libro busqueda:listaLibros){
-            if(libroBuscado.equals(busqueda.getTitulo())){
-                busquedaAcer = true;
-                libroTitulo = busqueda.getTitulo();
-                datosLibro = busqueda;
-            }
-        }
-       if(!busquedaAcer){
-          return "Los datos del libro: " + libroTitulo + "\n" + datosLibro;
-       }else{
-            return "No disponemos del libro que buscas";
-        }
-    }
-     
 }
