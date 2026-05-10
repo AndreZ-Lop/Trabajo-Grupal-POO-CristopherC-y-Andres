@@ -137,10 +137,15 @@ public class BibliotecaTrabajoGrupal {
                         
                         
                         boolean colocarRestriccion = definirRestriccion.equals("S");
-                        System.out.println("Ingrese el autor del libro: ");
+                        System.out.println("Ingrese el autor del libro si el libro no posee autor escriba 'VACIO': ");
                         String autorLbr = lector.nextLine().trim();
                         if (listaAutores.isEmpty()){
                             System.out.println("Lista de Autores esta vacia....");
+                            System.out.println("El libro se registro con auto DESCONOCIDO");
+                            Autor desconocido = new Autor("Desconocido", "0000000000", new Date(), "Anónimo", "N/A", "N/A");
+                            Libro nuevoLibro = new Libro(titulosLbr,isbnLbr,generoLbr,fechaPub,desconocido,idiomaLbr,estado,colocarRestriccion);
+                            listaLibros.add(nuevoLibro);
+                            
                             break;
                         }
                         
@@ -159,7 +164,11 @@ public class BibliotecaTrabajoGrupal {
                         if(registroEx){
                             System.out.println("El libro se pudo registrar correctamente...");
                         }else{
-                            System.out.println("El libro no se pudo registrar correctamente...");
+                            System.out.println("El libro se registro con auto DESCONOCIDOr");
+                            Autor desconocido = new Autor("Desconocido", "0000000000", new Date(), "Anónimo", "N/A", "N/A");
+                            Libro nuevoLibro = new Libro(titulosLbr,isbnLbr,generoLbr,fechaPub,desconocido,idiomaLbr,estado,colocarRestriccion);
+                            listaLibros.add(nuevoLibro);
+                            
                         }
                         System.out.println("Desea crear otro libro? (S/N)");
                         decision = lector.next();
