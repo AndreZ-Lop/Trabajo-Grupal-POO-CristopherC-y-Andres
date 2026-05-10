@@ -141,7 +141,7 @@ public class BibliotecaTrabajoGrupal {
                         String autorLbr = lector.nextLine().trim();
                         if (listaAutores.isEmpty()){
                             System.out.println("Lista de Autores esta vacia....");
-                            System.out.println("El libro se registro con auto DESCONOCIDO");
+                            System.out.println("El libro se registro con autor DESCONOCIDO");
                             Autor desconocido = new Autor("Desconocido", "0000000000", new Date(), "Anónimo", "N/A", "N/A");
                             Libro nuevoLibro = new Libro(titulosLbr,isbnLbr,generoLbr,fechaPub,desconocido,idiomaLbr,estado,colocarRestriccion);
                             listaLibros.add(nuevoLibro);
@@ -164,7 +164,7 @@ public class BibliotecaTrabajoGrupal {
                         if(registroEx){
                             System.out.println("El libro se pudo registrar correctamente...");
                         }else{
-                            System.out.println("El libro se registro con auto DESCONOCIDOr");
+                            System.out.println("El libro se registro con autor DESCONOCIDO");
                             Autor desconocido = new Autor("Desconocido", "0000000000", new Date(), "Anónimo", "N/A", "N/A");
                             Libro nuevoLibro = new Libro(titulosLbr,isbnLbr,generoLbr,fechaPub,desconocido,idiomaLbr,estado,colocarRestriccion);
                             listaLibros.add(nuevoLibro);
