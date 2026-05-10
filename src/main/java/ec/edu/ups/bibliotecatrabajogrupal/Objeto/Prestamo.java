@@ -58,8 +58,10 @@ public class Prestamo {
                    """;
         resultado+="Inicio prestamo: " + inicioPrestamo + "\n";
         resultado+="Fin prestamo: " + finPrestamo + "\n";
-        resultado+="Prestado a: " + usuarioPrestado.getNombreCompleto()+ "\n";
-        resultado+="Libro prestado: " + libroPrestado.getTitulo() + "\n";
+        resultado+="Prestado a: " + "\n";
+        resultado+= usuarioPrestado.getNombreCompleto()+"\n";
+        resultado+="Libro prestado: " + "\n";
+        resultado+= libroPrestado.getTitulo() + "\n";
         resultado+="RECUERDA!! el libro debe ser devuelto en una semana";
         return resultado;
     }

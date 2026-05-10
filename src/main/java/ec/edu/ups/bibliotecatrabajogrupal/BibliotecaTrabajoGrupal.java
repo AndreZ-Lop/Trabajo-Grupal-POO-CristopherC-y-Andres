@@ -29,7 +29,8 @@ public class BibliotecaTrabajoGrupal {
         System.out.println("6 - Mostrar todos los libros");
         System.out.println("7 - Buscar libro");
         System.out.println("8 - Lista de libros por autor");
-        System.out.println("9 - Salir menu");
+        System.out.println("9 - Mostrar todos los prestamos realizados");
+        System.out.println("10 - Salir menu");
         int opcion = lector.nextByte();
         lector.nextLine();
         
@@ -38,7 +39,7 @@ public class BibliotecaTrabajoGrupal {
         String decision;
        
         
-        while (opcion!=9){
+        while (opcion!=10){
             switch (opcion){
                 case 1:
                     boolean continuaRes;
@@ -351,6 +352,16 @@ public class BibliotecaTrabajoGrupal {
                         }
                     }
                     break;
+                case 9:
+                    if(listaPrestamos.isEmpty()){
+                        System.out.println("No hay ningun prestamo realizado");
+                    }else{
+                        for (Prestamo prestamoHechos: listaPrestamos){
+                            System.out.println(prestamoHechos.toString());
+                        }
+                    }
+                
+                    break;
                 default:
                     System.out.println("Ninguna Opcion Seleccionada");
                     break;
@@ -364,7 +375,8 @@ public class BibliotecaTrabajoGrupal {
             System.out.println("6 - Mostrar todos los libros");
             System.out.println("7 - Buscar libro");
             System.out.println("8 - Lista de libros por autor");
-            System.out.println("9 - Salir menu");
+            System.out.println("9 - Mostrar todos los prestamos realizados");
+            System.out.println("10 - Salir menu");
 
             opcion = lector.nextByte();
             lector.nextLine();
