@@ -11,8 +11,8 @@ public class Usuario extends Persona{
     public Usuario() {
     }
 
-    public Usuario(String correo, String contrasenia, boolean restriccionesUsuario, String nombre, String cedula, Date fechaNac, String apellido) {
-        super(nombre, cedula, fechaNac, apellido);
+    public Usuario(String correo, String contrasenia, boolean restriccionesUsuario, String nombreCompleto, String cedula, Date fechaNac ) {
+        super(nombreCompleto, cedula, fechaNac);
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.restriccionesUsuario = restriccionesUsuario;

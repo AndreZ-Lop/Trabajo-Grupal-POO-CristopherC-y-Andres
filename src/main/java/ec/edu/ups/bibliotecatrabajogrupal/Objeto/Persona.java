@@ -5,28 +5,26 @@
 package ec.edu.ups.bibliotecatrabajogrupal.Objeto;
 import java.util.Date;
 public class Persona {
-    private String nombre;
+    private String nombreCompleto;
     private String cedula;
     private Date fechaNac;
-    private String apellido;
     
     public Persona(){
         
     }
-    
-    public Persona(String nombre, String cedula, Date fechaNac, String apellido){
-        this.nombre = nombre;
+
+    public Persona(String nombreCompleto, String cedula, Date fechaNac) {
+        this.nombreCompleto = nombreCompleto;
         this.cedula = cedula;
         this.fechaNac = fechaNac;
-        this.apellido = apellido;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getCedula() {
@@ -42,24 +40,19 @@ public class Persona {
     }
 
     public void setFechaNac(Date fechaNac) {
-        this.fechaNac= fechaNac;
+        this.fechaNac = fechaNac;
     }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
+    
+    
+    
+    
     
     @Override
     public String toString(){
         String resultado = "\n";
-        resultado += "Nombre del usuario: " + nombre + "\n";
+        resultado += "Nombre Completo: " + "[" + nombreCompleto + "]" + "\n";
         resultado += "Cedula : " + cedula + "\n";
         resultado += "Fecha de Nacimiento: " + fechaNac;
-        resultado += "Apellido: " + apellido;
         return resultado;
     }
     

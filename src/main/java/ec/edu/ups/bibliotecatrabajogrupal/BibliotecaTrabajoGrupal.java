@@ -28,16 +28,17 @@ public class BibliotecaTrabajoGrupal {
         System.out.println("5 - Devolver libro");
         System.out.println("6 - Mostrar todos los libros");
         System.out.println("7 - Buscar libro");
-        System.out.println("8 - Salir menu");
+        System.out.println("8 - Lista de libros por autor");
+        System.out.println("9 - Salir menu");
         int opcion = lector.nextByte();
         lector.nextLine();
         
         boolean encontrado;
         boolean buscarExistencia;
         String decision;
-        int numeroLibros = 0;
+       
         
-        while (opcion!=6){
+        while (opcion!=9){
             switch (opcion){
                 case 1:
                     boolean continuaRes;
@@ -45,13 +46,11 @@ public class BibliotecaTrabajoGrupal {
                         Usuario nuevoUsuario = new Usuario();
                         continuaRes = false;
                         System.out.println("Datos del Usuario");
-                        System.out.println("Ingrese su nombre: ");
-                        String nombre = lector.next();
-                        nuevoUsuario.setNombre(nombre);
+                        System.out.println("Ingrese su nombre completo: ");
+                        String nombreCompletos = lector.next();
+                        nuevoUsuario.setNombreCompleto(nombreCompletos);
                         
-                        System.out.println("Ingrese su apellido: ");
-                        String apellido = lector.next();
-                        nuevoUsuario.setApellido(apellido);
+                        lector.nextLine();
                 
                         System.out.println("Ingrese su cedula: ");
                         String cedula = lector.next();
@@ -86,9 +85,10 @@ public class BibliotecaTrabajoGrupal {
                             String contrasenia = lector.next();
                             nuevoUsuario.setContrasenia(contrasenia);
                             
-                            System.out.println("Tipo de Cliente (vip/comun)");
+                            System.out.println("Tipo de Cliente (vip/comun): ");
                             
-                            String tipoMembresia = lector.nextLine();
+                            String tipoMembresia = lector.next();
+                            
                             
                             Random random = new Random();
                             int generadorCodigo = random.nextInt(10000)+1000;
@@ -109,7 +109,8 @@ public class BibliotecaTrabajoGrupal {
                         boolean registroEx = false;
                         System.out.println("===Registro Libros===");
                         System.out.println("Ingrese el titulo del libro: ");
-                        String titulosLbr = lector.nextLine();
+                        String titulosLbr = lector.next();
+                        lector.nextLine();
                         System.out.println("Ingrese el codigo del ISBN: ");
                         int isbnLbr = lector.nextInt();
                         lector.nextLine();
@@ -131,6 +132,8 @@ public class BibliotecaTrabajoGrupal {
                             definirRestriccion = lector.next().toUpperCase().strip();
                         }
                         
+                        lector.nextLine();
+                        
                         boolean colocarRestriccion = definirRestriccion.equals("S");
                         System.out.println("Ingrese el autor del  libro: ");
                         String autorLbr =lector.nextLine();
@@ -138,7 +141,7 @@ public class BibliotecaTrabajoGrupal {
                             System.out.println("Lista de Autores esta vacia....");
                         }
                         for(Autor autores : listaAutores){
-                            if(autorLbr.equals(autores.getNombre())){
+                            if(autorLbr.equals(autores.getNombreCompleto())){
                                 System.out.println("El autor si esta registrado :)");
                                 Libro nuevoLibro = new Libro(titulosLbr,isbnLbr,generoLbr,fechaPub,autores,idiomaLbr,estado,colocarRestriccion);
                                 listaLibros.add(nuevoLibro);
@@ -150,7 +153,7 @@ public class BibliotecaTrabajoGrupal {
                             }
                         }
                         if(!registroEx){
-                            System.out.println("No se peude registrar un libro sin un autor...");
+                            System.out.println("No se puede registrar un libro sin un autor...");
                         }else{
                             System.out.println("El libro se pudo registrar correctamente...");
                         }
@@ -160,28 +163,30 @@ public class BibliotecaTrabajoGrupal {
                     break;
                 case 3 :
                     do{
-                        System.out.println("Ingrese el nombre: ");
-                        String nomAtr = lector.nextLine();
+                        System.out.println("Ingrese el nombre completo: ");
+                        String nomAtr = lector.next();
+                        
+                        lector.nextLine();
+                        
                         System.out.println("Ingrese la cedula: ");
-                        String cedAtr = lector.nextLine();
+                        String cedAtr = lector.next();
                         System.out.println("Ingrese la fecha de nacimiento: DD MM AAAA");
                         byte dia = lector.nextByte();
                         byte mes = lector.nextByte();
                         int anio= lector.nextInt();
                         Date fechaNacAtr = new Date(anio-1900,mes -1,dia);
                         lector.nextLine();
-                        System.out.println("Ingrese el apellido: ");
-                        String appAtr = lector.nextLine();
                         System.out.println("Ingrese el seudonimo: ");
                         String seudAtr = lector.nextLine();
                         System.out.println("Ingrese la nacionalidad:  ");
                         String nacAtr= lector.nextLine();
                         System.out.println("Ingrese el genero del Autor: ");
                         String genAtr = lector.nextLine();
-                        Autor nuevoAutor = new Autor(nomAtr,cedAtr,fechaNacAtr,appAtr,seudAtr,nacAtr,genAtr);
+                        Autor nuevoAutor = new Autor(nomAtr,cedAtr,fechaNacAtr,seudAtr,nacAtr,genAtr);
                         listaAutores.add(nuevoAutor);
                         System.out.println("Desea crear otro autor? (S/N)");
                         decision = lector.next();
+                        System.out.println(listaAutores.toString());
                         
                     }while(decision.equalsIgnoreCase("S"));
                     break;
@@ -204,7 +209,7 @@ public class BibliotecaTrabajoGrupal {
                     for (Usuario solicitante : listaUsuarios){
                         if (intentoCorreo.equals(solicitante.getCorreo()) && intentoContrasenia.equals(solicitante.getContrasenia())) {
                             encontrado = true;
-                            System.out.println("HOLA!!" + solicitante.getNombre());
+                            System.out.println("HOLA!!" + solicitante.getNombreCompleto());
                             if (listaLibros.isEmpty()) {
                                 System.out.println("No existen libros registrados...");
                                 break;
@@ -265,7 +270,7 @@ public class BibliotecaTrabajoGrupal {
                     for (Usuario solicitante : listaUsuarios){
                         if(intentoCorreo.equals(solicitante.getCorreo()) && intentoContrasenia.equals(solicitante.getContrasenia())){
                             encontrado = true;
-                            System.out.println("HOLA!!" + solicitante.getNombre());
+                            System.out.println("HOLA!!" + solicitante.getNombreCompleto());
                             System.out.println("Que libro va a devolver");
                             String libroSolicitado = lector.nextLine();
                             for(Libro buscarLibro: listaLibros){
@@ -294,7 +299,7 @@ public class BibliotecaTrabajoGrupal {
                         }
                     break;
                 case 6:
-                    if (numeroLibros == 0){
+                    if (listaLibros.isEmpty()){
                         System.out.println("No existen libros registrados");
                     }else{
                         for (Libro mostrarLibros : listaLibros){
@@ -303,7 +308,7 @@ public class BibliotecaTrabajoGrupal {
                     }
                     break;
                 case 7:
-                    if (numeroLibros == 0){
+                    if (listaLibros.isEmpty()){
                         System.out.println("No existen libros registrados");
                     }else{
                        System.out.println("De que libro desea conocer sus datos?");
@@ -317,19 +322,34 @@ public class BibliotecaTrabajoGrupal {
                        }
                     }
                     break;
+                case 8:
+                    if(listaAutores.isEmpty()){
+                        System.out.println("No existen autores registrados");
+                    }else{
+                        System.out.println("De que autor desea ver sus libros?");
+                        String listalibAutores = lector.nextLine();
+                        for(Autor libautores :listaAutores){
+                            if(listalibAutores.equals(libautores.getNombreCompleto())){
+                                System.out.println(libautores.toString());
+                            }else{
+                                System.out.println("El autor que usted busca no lo disponemos");
+                            }
+                        }
+                    }
                 default:
                     System.out.println("Ninguna Opcion Seleccionada");
                     break;
             }
               System.out.println("--- MENU ---");
-              System.out.println("1 - Registrar Usuario");
-              System.out.println("2 - Registrar Libros");
-              System.out.println("3 - Registrar Autor");
-              System.out.println("4 - Prestamos Libros");
-              System.out.println("5 - Devolver libro");
-              System.out.println("6 - Mostrar todos los libros");
-              System.out.println("7 - Buscar libro");
-              System.out.println("8 - Salir menu");
+            System.out.println("1 - Registrar Usuario");
+            System.out.println("2 - Registrar Libros");
+            System.out.println("3 - Registrar Autor");
+            System.out.println("4 - Prestamos Libros");
+            System.out.println("5 - Devolver libro");
+            System.out.println("6 - Mostrar todos los libros");
+            System.out.println("7 - Buscar libro");
+            System.out.println("8 - Lista de libros por autor");
+            System.out.println("9 - Salir menu");
 
             opcion = lector.nextByte();
             lector.nextLine();

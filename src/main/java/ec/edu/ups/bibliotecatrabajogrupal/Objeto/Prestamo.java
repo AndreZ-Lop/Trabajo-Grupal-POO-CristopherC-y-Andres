@@ -58,7 +58,7 @@ public class Prestamo {
                    """;
         resultado+="Inicio prestamo: " + inicioPrestamo + "\n";
         resultado+="Fin prestamo: " + finPrestamo + "\n";
-        resultado+="Prestado a: " + usuarioPrestado.getNombre()+ usuarioPrestado.getApellido() + "\n";
+        resultado+="Prestado a: " + usuarioPrestado.getNombreCompleto()+ "\n";
         resultado+="Libro prestado: " + libroPrestado.getTitulo() + "\n";
         resultado+="RECUERDA!! el libro debe ser devuelto en una semana";
         return resultado;
@@ -67,7 +67,7 @@ public class Prestamo {
          if(solicitante.getMembresiaU().getEstado() && libroSolicitado.getEstado()){
              solicitante.cambioEstadoMemebresia(false);
              libroSolicitado.setEstado(false);
-             return "El prestamo se realizo con exito a: " + solicitante.getNombre() + " " + solicitante.getApellido();
+             return "El prestamo se realizo con exito a: " + solicitante.getNombreCompleto();
          }else if(!solicitante.getMembresiaU().getEstado()){
              return "Error: El usuario ya tiene un libro en su poder.";
          }else{
@@ -79,11 +79,11 @@ public class Prestamo {
          if(!solicitante.getMembresiaU().getEstado() && !libroSolicitado.getEstado()){
              solicitante.cambioEstadoMemebresia(true);
              libroSolicitado.setEstado(true);
-             return "La devolucion se realizo con exito el usuario: " + solicitante.getNombre() +"  "+ solicitante.getApellido();
+             return "La devolucion se realizo con exito el usuario: " + solicitante.getNombreCompleto();
          }else if(solicitante.getMembresiaU().getEstado()){
              return "Error: El usuario no debe devolver ningun libro.";
          }else{
-             return "Error: El libro solicitado no debe ser devuelto por el usuario." + solicitante.getNombre() +"  "+ solicitante.getApellido();
+             return "Error: El libro solicitado no debe ser devuelto por el usuario." + solicitante.getNombreCompleto();
          }
     }
 }

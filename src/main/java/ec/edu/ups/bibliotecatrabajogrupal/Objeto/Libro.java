@@ -102,7 +102,7 @@ public class Libro {
         resultado += fechaPublicacion + "\n";
         resultado += idiomaLibro + "\n";
         resultado += "--- AUTOR --- " + "\n";
-        resultado += autorLibro + "\n";
+        resultado += autorLibro.getNombreCompleto() + "\n";
         if (estado){
             resultado += "Disponible";
         }else{

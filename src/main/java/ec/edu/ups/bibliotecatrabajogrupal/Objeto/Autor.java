@@ -1,4 +1,5 @@
 package ec.edu.ups.bibliotecatrabajogrupal.Objeto;
+import ec.edu.ups.bibliotecatrabajogrupal.Objeto.Libro;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ public class Autor extends Persona {
     public Autor(){ 
         this.librosAutores = new ArrayList();
     }
-    public Autor(String nombre,String cedula, Date fechaNac,String apellido, String seudonimo, String nacionalidad ,String generoAutor){
-        super(nombre,cedula,fechaNac,apellido);
+    public Autor(String nombreCompleto,String cedula, Date fechaNac, String seudonimo, String nacionalidad ,String generoAutor){
+        super(nombreCompleto,cedula,fechaNac);
         this.seudonimo = seudonimo;
         this.nacionalidad = nacionalidad;
         this.generoAutor = generoAutor;
@@ -53,7 +54,12 @@ public class Autor extends Persona {
         resultado +=  super.toString() + "\n"; 
         resultado += "Apodo: " + seudonimo + "\n";
         resultado += "Nacionalidad: " + nacionalidad + "\n";
-        resultado += "Genero del Autor: " + generoAutor;
+        resultado += "Genero del Autor: " + generoAutor +"\n";
+        if(librosAutores.isEmpty()){
+            System.out.println("El autor no tiene libros");
+        }else{
+            resultado += "Libros: " + librosAutores.toString();
+        }
         return resultado;
     }
     
